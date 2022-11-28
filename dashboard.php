@@ -32,10 +32,10 @@
     <?php
         include "config.php";
         $no = 1;
-        $data = mysqli_query($conn,"SELECT pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
+        $data = mysqli_query($conn,"SELECT pengguna.id as p_id, pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
         FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
         while($r = mysqli_fetch_array($data)){
-            $id = $r['item_id'];
+            $p_id = $r['p_id'];
             $nama_pemilik = $r['username'];
             $no_hp = $r['phone'];
             $nama_barang = $r['item_name'];
@@ -43,14 +43,14 @@
             $waktu_hilang = $r['waktu_hilang'];
     ?>
             <tr><td><?php echo $no++; ?></td>
-            <td><?php echo $id; ?></td>
+            <td><?php echo $p_id; ?></td>
             <td><?php echo $nama_pemilik; ?></td>
             <td><?php echo $no_hp; ?></td>
             <td><?php echo $nama_barang; ?></td>
             <td><?php echo $lokasi_hilang; ?></td>
             <td><?php echo $waktu_hilang; ?></td>
-            <td align=right width=70px><a href="edit.php?id=<?php echo $id_barang;?>">Edit</a></td>
-            <td align=right width=70px><a href="hapus.php?id=<?php echo $id_barang;?>">Hapus</a></td>
+            <td align=right width=70px><a href="edit.php?id=<?php echo $p_id;?>">Edit</a></td>
+            <td align=right width=70px><a href="hapus.php?id=<?php echo $p_id;?>">Hapus</a></td>
             </tr>
             <?php 
     }
