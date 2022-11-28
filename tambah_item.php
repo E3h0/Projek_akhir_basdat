@@ -61,7 +61,8 @@
         include "config.php";
 
         // Insert user data into table
-        $tambah_item = "insert into items(`pengguna_id`, `item_name`, `lokasi_hilang`, `waktu_hilang`) values((select id from pengguna where pengguna.username =  '$nama_pemilik'), '$nama_barang', '$lokasi', '$waktu')";
+        $tambah_item = "insert into items(`pengguna_id`, `item_name`, `lokasi_hilang`, `waktu_hilang`) 
+        values((select id from pengguna where pengguna.username =  '$nama_pemilik'), '$nama_barang', '$lokasi', '$waktu')";
         $kerjakan=mysqli_query($conn, $tambah_item);
         if($kerjakan)
         {
