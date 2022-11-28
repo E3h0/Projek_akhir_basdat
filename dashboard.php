@@ -25,7 +25,7 @@
         <th>No. Hp</th>
         <th>Nama Barang</th>
         <th>Lokasi Hilang</th>
-        <th>waktu hilang</th>
+        <th>Waktu Hilang</th>
         <th colspan=2><center>Opsi</center></th>
     </tr>
     
