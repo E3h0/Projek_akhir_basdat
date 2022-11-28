@@ -2,6 +2,10 @@
 <head>
  <title>Tambah data</title>
 </head>
+<?php
+    include "config.php";
+    $get_pemilik = mysqli_query($conn, "SELECT * FROM pengguna");
+?>
 <body style="font-family:arial">
  <center><h2>Tambah Data Baru</center>
  <hr />
@@ -16,7 +20,17 @@
             </tr>
             <tr> 
                 <td>Nama Pemilik</td>
-                <td><input type="text" name="nama_pemilik" size="50" required></td>
+                <!-- <td><input type="text" name="nama_pemilik" size="50" required></td> -->
+                <td>
+                <label for="nama_pemilik"></label>
+                <select name="nama_pemilik" id="nama_pemilik">
+                    <?php
+                        while($pemilik = mysqli_fetch_array($get_pemilik)) {
+                            echo "<option value=".$pemilik['username'].">".$pemilik['username']."</option>";
+                        }
+                    ?>
+                </select>
+                </td>
             </tr>
             <tr> 
                 <td>lokasi</td>
@@ -26,7 +40,7 @@
                 <td>waktu</td>
                 <td><input type="datetime-local" name="waktu_hilang" size="50" required></td>
             </tr>
-            <tr> 
+            <tr>    
                 <td></td>
                 <td><input type="submit" name="Submit" value="+ Tambahkan"></td>
             </tr>
@@ -47,7 +61,7 @@
         include "config.php";
 
         // Insert user data into table
-        $tambah_item = "insert into items(`pengguna_id`, `nama_pemilik`, `item_name`, `lokasi_hilang`, `waktu_hilang`) values((select id from pengguna where pengguna.username =  '$nama_pemilik'), '$nama_pemilik', '$nama_barang', '$lokasi', '$waktu')";
+        $tambah_item = "insert into items(`pengguna_id`, `item_name`, `lokasi_hilang`, `waktu_hilang`) values((select id from pengguna where pengguna.username =  '$nama_pemilik'), '$nama_barang', '$lokasi', '$waktu')";
         $kerjakan=mysqli_query($conn, $tambah_item);
         if($kerjakan)
         {
