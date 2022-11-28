@@ -56,6 +56,7 @@
     }
     ?>
     </table></br> 
-    <a href="tambah.php">+ Tambah Kasus Baru</a>
+    <a href="tambah_pengguna.php">+ Tambah Pemilik Baru</a><br>
+    <a href="tambah_item.php">+ Tambah Data Baru</a>
 </body>
 </html>
