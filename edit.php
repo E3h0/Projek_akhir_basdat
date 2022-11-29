@@ -76,7 +76,7 @@
                 <td>Nama Barang</td>
                 <td><input type="text" size="50" name="item_name" value="<?php
                         $get_item = mysqli_query($conn, "SELECT * FROM items");
-                        while($geti = mysqli_fetch_array($get_item)) {
+                        if($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['item_name'];
                         }
                     ?>">
@@ -86,7 +86,7 @@
                 <td>Lokasi Hilang</td>
                 <td><input type="text" name="lokasi_hilang" size="50" value="<?php
                         $get_item = mysqli_query($conn, "SELECT * FROM items");
-                        while($geti = mysqli_fetch_array($get_item)) {
+                        if($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['lokasi_hilang'];
                         }
                     ?>">
