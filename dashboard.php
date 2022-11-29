@@ -26,7 +26,7 @@
         <th>Nama Barang</th>
         <th>Lokasi Hilang</th>
         <th>Waktu Hilang</th>
-        <th>Kategori</th>
+        <!-- <th>Kategori</th> -->
         <th colspan=2><center>Opsi</center></th>
     </tr>
     
@@ -35,16 +35,16 @@
         $no = 1;
         $data = mysqli_query($conn,"SELECT pengguna.id as p_id, pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
         FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
-        $dat = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
-        INNER JOIN category ON items.item_id = category.items_id");
-        while($r = mysqli_fetch_array($dat)){
-            $p_id = $r['pengguna_id'];
+        // $dat = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
+        // INNER JOIN category ON items.item_id = category.items_id");
+        while($r = mysqli_fetch_array($data)){
+            $p_id = $r['p_id'];
             $nama_pemilik = $r['username'];
             $no_hp = $r['phone'];
             $nama_barang = $r['item_name'];
             $lokasi_hilang = $r['lokasi_hilang'];
             $waktu_hilang = $r['waktu_hilang'];
-            $cat = $r['category_name'];
+            // $cat = $r['category_name'];
     ?>
             <tr><td><?php echo $no++; ?></td>
             <td><?php echo $p_id; ?></td>
@@ -53,7 +53,7 @@
             <td><?php echo $nama_barang; ?></td>
             <td><?php echo $lokasi_hilang; ?></td>
             <td><?php echo $waktu_hilang; ?></td>
-            <td><?php echo $cat; ?></td>
+            <!-- <td><?php echo $cat; ?></td> -->
             <td align=right width=70px><a href="edit.php?id=<?php echo $p_id;?>">Edit</a></td>
             <td align=right width=70px><a href="hapus.php?id=<?php echo $p_id;?>">Hapus</a></td>
             </tr>
