@@ -1,67 +1,53 @@
-<html>
+<?php
+//connect DB
+$db = mysqli_connect("localhost", "root", "", "ke-temu");
+//ambil data
+$result = mysqli_query($db, "SELECT `item`.`Name` AS `Item`, `lost`.`Date_lost`, `lost`.`Location`, `lost`.`Time`, `item`.`Detail`, `item`.`Photo`, `users`.`Username`, `users`.`Phone`
+FROM `item` 
+	LEFT JOIN `lost` ON `lost`.`Item_ID` = `item`.`ID` 
+	LEFT JOIN `users` ON `item`.`User_ID` = `users`.`ID`;");
+
+//while ($db = mysqli_fetch_assoc($result)) {
+    //var_dump($db);
+//}
+
+if(!$result){echo_mysqli_error($db);}
+?>
+
 <head>
-    <link rel="stylesheet" type="text/css" href="dash.css">
-    <title>Data Kasus</title>
-</head>
-<body style="font-family:arial">
-    <div class="input-group">
-        <a href="logout.php" class="btn">Logout</a>
-    </div>
-    <?php
-    session_start(); 
-
-    if (!isset($_SESSION['username'])) {
-        header("Location: dashboard.php");
-    }
-
-    echo "<h3>Selamat Datang, " . $_SESSION['username'] ."!". "</h3 >";
-    ?>
-    <h2><b>Data Kasus</b></h2>
-    <table style="width:100%" class="table1">
-    <tr>
-        <th>No</th>
-        <th>Kode</th>
-        <th>Nama Pemilik</th>
-        <th>No. Hp</th>
-        <th>Nama Barang</th>
-        <th>Lokasi Hilang</th>
-        <th>Waktu Hilang</th>
-        <!-- <th>Kategori</th> -->
-        <th colspan=2><center>Opsi</center></th>
+<title>Ke-Temu</title>
+<body>
+    <h1>Lost</h1>
+    <table border="1" cellpadding="10" cellspacing="0">
+    <tr>    
+        <th>Item</th>
+        <th>Date Lost</th>
+        <th>Location</th>
+        <th>Time Lost</th>
+        <th>Detail</th>
+        <th>Photo</th>
+        <th>Username</th>
+        <th>Phone</th>
+        <th>Edit/Delete</th>
     </tr>
     
-    <?php
-        include "config.php";
-        $no = 1;
-        $data = mysqli_query($conn,"SELECT pengguna.id as p_id, pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
-        FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
-        // $dat = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
-        // INNER JOIN category ON items.item_id = category.items_id");
-        while($r = mysqli_fetch_array($data)){
-            $p_id = $r['p_id'];
-            $nama_pemilik = $r['username'];
-            $no_hp = $r['phone'];
-            $nama_barang = $r['item_name'];
-            $lokasi_hilang = $r['lokasi_hilang'];
-            $waktu_hilang = $r['waktu_hilang'];
-            // $cat = $r['category_name'];
-    ?>
-            <tr><td><?php echo $no++; ?></td>
-            <td><?php echo $p_id; ?></td>
-            <td><?php echo $nama_pemilik; ?></td>
-            <td><?php echo $no_hp; ?></td>
-            <td><?php echo $nama_barang; ?></td>
-            <td><?php echo $lokasi_hilang; ?></td>
-            <td><?php echo $waktu_hilang; ?></td>
-            <!-- <td><?php echo $cat; ?></td> -->
-            <td align=right width=70px><a href="edit.php?id=<?php echo $p_id;?>">Edit</a></td>
-            <td align=right width=70px><a href="hapus.php?id=<?php echo $p_id;?>">Hapus</a></td>
-            </tr>
-            <?php 
-    }
-    ?>
-    </table></br> 
-    <a href="tambah_pengguna.php">+ Tambah Pemilik Baru</a><br>
-    <a href="tambah_item.php">+ Tambah Data Baru</a>
+    <?php while($row = mysqli_fetch_assoc($result)): ?>
+    
+    <tr>    
+        <td><?= $row["Item"]; ?></td>
+        <td><?= $row["Date_lost"]; ?></td>
+        <td><?= $row["Location"]; ?></td>
+        <td><?= $row["Time"]; ?></td>
+        <td><?= $row["Detail"]; ?></td>
+        <td><img src= "img/<?= $row["Photo"]; ?>" height="50"></td>
+        <td><?= $row["Username"]; ?></td>
+        <td><?= $row["Phone"]; ?></td>
+        <td><a href="edit.php">Edit</a></td>
+    </tr>
+    </table>
+    <?php endwhile; ?>
+
+    <h1>Found</h1>
+
 </body>
-</html>
+</head>
