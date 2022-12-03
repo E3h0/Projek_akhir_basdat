@@ -3,7 +3,7 @@
 $server = "localhost";
 $user = "root";
 $pass = "";
-$database = "lostnfound";
+$database = "baranghilang_db";
 
 $conn = mysqli_connect($server, $user, $pass, $database);
 
