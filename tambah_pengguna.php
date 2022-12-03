@@ -55,5 +55,6 @@
         }
     }
     ?>
+    <a href="dashboard.php"><--Batalkan Tambah Pemilik</a><br>
 </body>
 </html>

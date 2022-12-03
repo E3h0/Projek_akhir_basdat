@@ -10,8 +10,8 @@ $id = $_GET['id'];
 // FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id
 // WHERE (pengguna.id = $id AND pengguna.id=items.pengguna_id)");
 
-$res = mysqli_query($conn, "DELETE pengguna.*, items.*
-FROM pengguna, items WHERE (pengguna.id = $id AND pengguna.id=items.pengguna_id)");
+$res = mysqli_query($conn, "DELETE cases.*, items.*
+FROM cases, items WHERE (cases.case_id = $id AND cases.itm_id = items.item_id)");
 
 
 

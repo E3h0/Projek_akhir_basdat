@@ -1,9 +1,9 @@
 <?php
     $id = $_GET['id'];
     include "config.php";
-    $query   = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
-    INNER JOIN category ON items.kategori_id = category.c_id INNER JOIN status ON items.st_id = status.s_id 
-    WHERE pengguna.id='$id'");
+    $query   = mysqli_query($conn, "SELECT * FROM cases INNER JOIN pengguna ON cases.pemilik_id = pengguna.id
+    INNER JOIN items ON cases.itm_id = items.item_id INNER JOIN category ON cases.category_id = category.c_id
+    INNER JOIN status ON cases.status_id = status.s_id WHERE case_id = '$id'");
     $result   = mysqli_fetch_array($query);
 ?>
 <html>

@@ -105,8 +105,18 @@
         (select c_id from category where category.category_name ='$cat'),'$lokasi', '$waktu',
         (select s_id from status where status.s_name = '$st'), '$det'
         )";
+        
+        $tambah_kasus = "insert into cases(`pemilik_id`, `itm_id`, `category_id`, `status_id`)values
+        (
+        (select id from pengguna where pengguna.username =  '$nama_pemilik'),
+        (select item_id from items where items.item_name =  '$nama_barang'),
+        (select c_id from category where category.category_name ='$cat'),
+        (select s_id from status where status.s_name = '$st')
+        )";
+
         $kerjakan=mysqli_query($conn, $tambah_item);
-        if($kerjakan)
+        $kerjakan1=mysqli_query($conn, $tambah_kasus);
+        if($kerjakan AND $kerjakan1)
         {
             // Show message when user added
             echo "Barang berhasil ditambahkan. <a href='index.php'>Lihat Data Barang</a>";
@@ -117,5 +127,6 @@
         }
     }
     ?>
+    <a href="dashboard.php"><--Batalkan Tambah Data</a><br>
 </body>
 </html>

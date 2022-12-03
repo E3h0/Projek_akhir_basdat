@@ -11,7 +11,7 @@
         <th>Kode</th>
         <th><center>Nama Pemilik</center></th>
         <th><center>No. Hp</center></th>
-        <th><center>Nama Barang</center></th>
+        <th><center>Nama Barang</center></th> 
         <th><center>Kategori</center></th>
         <th><center>Lokasi Hilang</center></th>
         <th><center>Waktu Hilang</center></th>
@@ -22,12 +22,20 @@
     <?php
         include "config.php";
         $no = 1;
-        $data = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
-        INNER JOIN category ON items.kategori_id = category.c_id INNER JOIN status ON items.st_id = status.s_id");
+        // $data = mysqli_query($conn,"SELECT pengguna.id as p_id, pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
+        // FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
         // $dat = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
-        // INNER JOIN category ON items.item_id = category.items_id");
-        while($r = mysqli_fetch_array($data)){
-            $p_id = $r['pengguna_id'];
+        // INNER JOIN category ON items.kategori_id = category.c_id INNER JOIN status ON items.st_id = status.s_id");
+
+        $dat = mysqli_query($conn, "SELECT * FROM cases INNER JOIN pengguna ON cases.pemilik_id = pengguna.id
+        INNER JOIN items ON cases.itm_id = items.item_id INNER JOIN category ON cases.category_id = category.c_id
+        INNER JOIN status ON cases.status_id = status.s_id ORDER BY case_id DESC");
+        // $dat1 = mysqli_query($conn, "SELECT * FROM cases");
+
+        // $r = mysqli_fetch_array($dat);
+        // $s= mysqli_fetch_array($dat1);
+        while($r = mysqli_fetch_array($dat)){
+            $p_id = $r['case_id'];
             $nama_pemilik = $r['username'];
             $no_hp = $r['phone'];
             $nama_barang = $r['item_name'];
@@ -44,14 +52,13 @@
             <td><center><?php echo $cat; ?></center></td>
             <td><center><?php echo $lokasi_hilang; ?></center></td>
             <td><center><?php echo $waktu_hilang; ?></center></td>
-            <td><center><?php echo $stat; ?></center></td>   
-            <td width=70px><center><a href="detail_dash.php?id=<?php echo $p_id;?>">Detail</a></center></td>         
+            <td><center><?php echo $stat; ?></center></td>
+            <td width=70px><center><a href="detail_dash.php?id=<?php echo $p_id;?>">Detail</a></center></td>
             </tr>
             <?php 
     }
     ?>
     </table></br> 
-    <a href="index.php"><-- Kembali ke Login Page</a><br>
-    <!-- <a href="tambah_item.php">+ Tambah Data Baru</a> -->
+    <a href="index.php"><--Kembali ke Login Page</a><br>
 </body>
 </html>

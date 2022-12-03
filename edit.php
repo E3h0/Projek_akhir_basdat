@@ -16,11 +16,16 @@
         $stat = $_POST['status'];
         $det = $_POST['detail'];
 
+        // $case = "select c_id from category where category.category_name ='$cat'";
+        // $case1 = "select s_id from status where status.s_name = '$stat'";
+        // $ccid = mysqli_query($conn, $case);
+        // $csid = mysqli_query($conn, $case1);
         // update user data
-        $result = mysqli_query($conn, "UPDATE items, pengguna SET items.item_name='$nama_barang',
+        $result = mysqli_query($conn, "UPDATE items, pengguna, cases SET items.item_name='$nama_barang',
         items.lokasi_hilang='$lokasi', items.waktu_hilang = '$waktu', items.kategori_id = '$cat', items.st_id = '$stat', items.detail = '$det',
-        pengguna.username = '$nama_pemilik', pengguna.phone = '$kontak2', pengguna.email = '$kontak1'
-        WHERE pengguna.id=$id AND pengguna.id=items.pengguna_id");
+        pengguna.username = '$nama_pemilik', pengguna.phone = '$kontak2', pengguna.email = '$kontak1', 
+        cases.category_id = '$cat', cases.status_id = '$stat' 
+        WHERE (cases.case_id=$id AND cases.itm_id = items.item_id AND cases.pemilik_id = pengguna.id)");
     
 
 
@@ -36,28 +41,33 @@
     $get_stat = mysqli_query($conn, "SELECT * FROM status");
 
     // Fetech user data based on id
-    $result = mysqli_query($conn, "SELECT pengguna.id as pid, pengguna.username, pengguna.email,
-    pengguna.phone, items.item_name, items.lokasi_hilang, 
-    items.waktu_hilang, items.item_id, items.detail
-    FROM pengguna INNER JOIN items ON pengguna.id=$id");
+    // $result = mysqli_query($conn, "SELECT pengguna.id as pid, pengguna.username, pengguna.email,
+    // pengguna.phone, items.item_name, items.lokasi_hilang, 
+    // items.waktu_hilang, items.item_id, items.detail
+    // FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
 
-    $get_c = mysqli_query($conn, "SELECT * FROM category");
-    $get_s = mysqli_query($conn, "SELECT * FROM status");
+    $result = mysqli_query($conn, "SELECT * FROM cases INNER JOIN pengguna ON cases.pemilik_id = pengguna.id
+    INNER JOIN items ON cases.itm_id = items.item_id INNER JOIN category ON cases.category_id = category.c_id
+    INNER JOIN status ON cases.status_id = status.s_id 
+    WHERE (cases.case_id = $id AND cases.itm_id = items.item_id)");
 
-    $r = mysqli_fetch_array($result);
-    $s = mysqli_fetch_array($get_c);
-    $t = mysqli_fetch_array($get_s);
-    if(($r AND $s) AND $t)
+    // $get_c = mysqli_query($conn, "SELECT * FROM category");
+    // $get_s = mysqli_query($conn, "SELECT * FROM status");
+
+    // $r = mysqli_fetch_array($result);
+    // $s = mysqli_fetch_array($get_c);
+    // $t = mysqli_fetch_array($get_s);
+    while($r = mysqli_fetch_array($result))
     {
-        $id = $r['pid'];
+        $id = $r['case_id'];
         $nama_barang = $r['item_name'];
-        $cat = $s['category_name'];
+        $cat = $r['category_name'];
         $lokasi = $r['lokasi_hilang'];
         $waktu = $r['waktu_hilang'];
         $nama_pemilik = $r['username'];
         $kontak1 = $r['email'];
         $kontak2 = $r['phone'];
-        $stat = $t['s_name'];
+        $stat = $r['s_name'];
         $det = $r['detail'];
     }
 ?>
@@ -90,9 +100,9 @@
                 <td>Nama Barang</td>
                 <td><input type="text" name="item_name" size="50" value="<?php
                         $get_item = mysqli_query($conn, "
-                        SELECT items.item_name, pengguna.id FROM items, pengguna  
-                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
-                        if($geti = mysqli_fetch_array($get_item)) {
+                        SELECT items.item_name FROM items, cases  
+                        WHERE cases.itm_id = items.item_id AND case_id = '$id'");
+                        while($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['item_name'];
                         }
                     ?>">
@@ -115,8 +125,8 @@
                 <td>Detail</td>
                 <td><input type="text" name="detail" size="50" value="<?php
                         $get_item = mysqli_query($conn, 
-                        "SELECT items.detail, pengguna.id FROM items, pengguna  
-                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
+                        "SELECT items.detail FROM items, cases  
+                        WHERE cases.itm_id = items.item_id AND case_id = '$id'");
                         if($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['detail'];
                         }
@@ -140,8 +150,8 @@
                 <td>Lokasi Hilang</td>
                 <td><input type="text" name="lokasi_hilang" size="50" value="<?php
                         $get_item = mysqli_query($conn, "
-                        SELECT items.lokasi_hilang, pengguna.id FROM items, pengguna  
-                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
+                        SELECT items.lokasi_hilang FROM items, cases  
+                        WHERE cases.itm_id = items.item_id AND case_id = '$id'");
                         if($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['lokasi_hilang'];
                         }
@@ -152,8 +162,8 @@
                 <td>Waktu Hilang</td>
                 <td><input type="datetime-local" name="waktu_hilang" size="50" value="<?php
                         $get_date = mysqli_query($conn, "
-                        SELECT items.waktu_hilang, pengguna.id FROM items, pengguna  
-                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
+                        SELECT items.waktu_hilang FROM items, cases  
+                        WHERE cases.itm_id = items.item_id AND case_id = '$id'");
                         if($geti = mysqli_fetch_array($get_date)) {
                             echo $geti['waktu_hilang'];
                         }
@@ -167,5 +177,6 @@
             </tr>
         </table>
     </form>
+    <a href="dashboard.php"><--Batalkan Edit Data</a><br>
 </body>
 </html>
