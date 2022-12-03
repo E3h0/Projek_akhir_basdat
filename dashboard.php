@@ -21,47 +21,51 @@
     <tr>
         <th>No</th>
         <th>Kode</th>
-        <th>Nama Pemilik</th>
-        <th>No. Hp</th>
-        <th>Nama Barang</th>
-        <th>Lokasi Hilang</th>
-        <th>Waktu Hilang</th>
-        <!-- <th>Kategori</th> -->
-        <th colspan=2><center>Opsi</center></th>
+        <th><center>Nama Pemilik</center></th>
+        <th><center>No. Hp</center></th>
+        <th><center>Nama Barang</center></th>
+        <th><center>Kategori</center></th>
+        <th><center>Lokasi Hilang</center></th>
+        <th><center>Waktu Hilang</center></th>
+        <th><center>Status</center></th>
+        <th colspan=3><center>Opsi</center></th>
     </tr>
     
     <?php
         include "config.php";
         $no = 1;
-        $data = mysqli_query($conn,"SELECT pengguna.id as p_id, pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
-        FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
-        // $dat = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
-        // INNER JOIN category ON items.item_id = category.items_id");
-        while($r = mysqli_fetch_array($data)){
-            $p_id = $r['p_id'];
+        // $data = mysqli_query($conn,"SELECT pengguna.id as p_id, pengguna.username, pengguna.phone, items.item_name, items.lokasi_hilang, items.waktu_hilang, items.item_id 
+        // FROM pengguna INNER JOIN items ON pengguna.id=items.pengguna_id");
+        $dat = mysqli_query($conn, "SELECT * FROM pengguna INNER JOIN items on pengguna.id = items.pengguna_id 
+        INNER JOIN category ON items.kategori_id = category.c_id INNER JOIN status ON items.st_id = status.s_id");
+        while($r = mysqli_fetch_array($dat)){
+            $p_id = $r['pengguna_id'];
             $nama_pemilik = $r['username'];
             $no_hp = $r['phone'];
             $nama_barang = $r['item_name'];
             $lokasi_hilang = $r['lokasi_hilang'];
             $waktu_hilang = $r['waktu_hilang'];
-            // $cat = $r['category_name'];
+            $cat = $r['category_name'];
+            $stat = $r['s_name'];
     ?>
             <tr><td><?php echo $no++; ?></td>
             <td><?php echo $p_id; ?></td>
-            <td><?php echo $nama_pemilik; ?></td>
-            <td><?php echo $no_hp; ?></td>
-            <td><?php echo $nama_barang; ?></td>
-            <td><?php echo $lokasi_hilang; ?></td>
-            <td><?php echo $waktu_hilang; ?></td>
-            <!-- <td><?php echo $cat; ?></td> -->
-            <td align=right width=70px><a href="edit.php?id=<?php echo $p_id;?>">Edit</a></td>
-            <td align=right width=70px><a href="hapus.php?id=<?php echo $p_id;?>">Hapus</a></td>
+            <td><center><?php echo $nama_pemilik; ?></center></td>
+            <td><center><?php echo $no_hp; ?></center></td>
+            <td><center><?php echo $nama_barang; ?></center></td>
+            <td><center><?php echo $cat; ?></center></td>
+            <td><center><?php echo $lokasi_hilang; ?></center></td>
+            <td><center><?php echo $waktu_hilang; ?></center></td>
+            <td><center><?php echo $stat; ?></center></td>
+            <td width=70px><center><a href="edit.php?id=<?php echo $p_id;?>">Edit</a></center></td>
+            <td width=70px><center><a href="hapus.php?id=<?php echo $p_id;?>">Hapus</a></center></td>
+            <td width=70px><center><a href="detail.php?id=<?php echo $p_id;?>">Detail</a></center></td>
             </tr>
             <?php 
     }
     ?>
     </table></br> 
     <a href="tambah_pengguna.php">+ Tambah Pemilik Baru</a><br>
-    <a href="tambah_item.php">+ Tambah Data Baru</a>
+    <a href="tambah_item.php">+ Tambah Data Baru</a><br>
 </body>
 </html>
