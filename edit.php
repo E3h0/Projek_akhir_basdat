@@ -7,15 +7,18 @@
     {   
         $id = $_POST['id'];
         $nama_barang = $_POST['item_name'];
+        $cat = $_POST['kategori'];
         $lokasi = $_POST['lokasi_hilang'];
         $waktu = $_POST['waktu_hilang'];
         $nama_pemilik = $_POST['username'];
         $kontak1 = $_POST['email'];
         $kontak2 = $_POST['phone'];
+        $stat = $_POST['status'];
+        $det = $_POST['detail'];
 
         // update user data
         $result = mysqli_query($conn, "UPDATE items, pengguna SET items.item_name='$nama_barang',
-        items.lokasi_hilang='$lokasi', items.waktu_hilang = '$waktu',
+        items.lokasi_hilang='$lokasi', items.waktu_hilang = '$waktu', items.kategori_id = '$cat', items.st_id = '$stat', items.detail = '$det',
         pengguna.username = '$nama_pemilik', pengguna.phone = '$kontak2', pengguna.email = '$kontak1'
         WHERE pengguna.id=$id AND pengguna.id=items.pengguna_id");
     
@@ -29,22 +32,33 @@
     // Display selected user data based on id
     // Getting id from url
     $id = $_GET['id'];
+    $get_cat = mysqli_query($conn, "SELECT * FROM category");
+    $get_stat = mysqli_query($conn, "SELECT * FROM status");
 
     // Fetech user data based on id
     $result = mysqli_query($conn, "SELECT pengguna.id as pid, pengguna.username, pengguna.email,
     pengguna.phone, items.item_name, items.lokasi_hilang, 
-    items.waktu_hilang, items.item_id 
+    items.waktu_hilang, items.item_id, items.detail
     FROM pengguna INNER JOIN items ON pengguna.id=$id");
 
-    while($r = mysqli_fetch_array($result))
+    $get_c = mysqli_query($conn, "SELECT * FROM category");
+    $get_s = mysqli_query($conn, "SELECT * FROM status");
+
+    $r = mysqli_fetch_array($result);
+    $s = mysqli_fetch_array($get_c);
+    $t = mysqli_fetch_array($get_s);
+    if(($r AND $s) AND $t)
     {
         $id = $r['pid'];
         $nama_barang = $r['item_name'];
+        $cat = $s['category_name'];
         $lokasi = $r['lokasi_hilang'];
         $waktu = $r['waktu_hilang'];
         $nama_pemilik = $r['username'];
         $kontak1 = $r['email'];
         $kontak2 = $r['phone'];
+        $stat = $t['s_name'];
+        $det = $r['detail'];
     }
 ?>
 
@@ -72,10 +86,12 @@
                 <td>Email</td>
                 <td><input type="email" size="50" name="email" value="<?php echo $kontak1;?>"></td>
             </tr>  
-            <tr>
+            <tr> 
                 <td>Nama Barang</td>
-                <td><input type="text" size="50" name="item_name" value="<?php
-                        $get_item = mysqli_query($conn, "SELECT * FROM items");
+                <td><input type="text" name="item_name" size="50" value="<?php
+                        $get_item = mysqli_query($conn, "
+                        SELECT items.item_name, pengguna.id FROM items, pengguna  
+                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
                         if($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['item_name'];
                         }
@@ -83,9 +99,49 @@
                 </td>
             </tr>
             <tr> 
+                <td>Kategori</td>
+                <td>
+                <label for="kategori"></label>
+                <select name="kategori" id="kategori">
+                    <?php
+                        while($cat = mysqli_fetch_array($get_cat)) {
+                            echo "<option value=".$cat['c_id'].">".$cat['category_name']."</option>";
+                        }
+                    ?>
+                </select>
+                </td>
+            </tr>
+            <tr> 
+                <td>Detail</td>
+                <td><input type="text" name="detail" size="50" value="<?php
+                        $get_item = mysqli_query($conn, 
+                        "SELECT items.detail, pengguna.id FROM items, pengguna  
+                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
+                        if($geti = mysqli_fetch_array($get_item)) {
+                            echo $geti['detail'];
+                        }
+                    ?>">
+                </td>
+            </tr>
+            <tr> 
+                <td>Status</td>
+                <td>
+                <label for="status"></label>
+                <select name="status" id="status">
+                    <?php
+                        while($cat = mysqli_fetch_array($get_stat)) {
+                            echo "<option value=".$cat['s_id'].">".$cat['s_name']."</option>";
+                        }
+                    ?>
+                </select>
+                </td>
+            </tr>
+            <tr> 
                 <td>Lokasi Hilang</td>
                 <td><input type="text" name="lokasi_hilang" size="50" value="<?php
-                        $get_item = mysqli_query($conn, "SELECT * FROM items");
+                        $get_item = mysqli_query($conn, "
+                        SELECT items.lokasi_hilang, pengguna.id FROM items, pengguna  
+                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
                         if($geti = mysqli_fetch_array($get_item)) {
                             echo $geti['lokasi_hilang'];
                         }
@@ -94,7 +150,14 @@
             </tr>
             <tr> 
                 <td>Waktu Hilang</td>
-                <td><input type="datetime-local" name="waktu_hilang" size="50" value="<?php echo $waktu ?>">
+                <td><input type="datetime-local" name="waktu_hilang" size="50" value="<?php
+                        $get_date = mysqli_query($conn, "
+                        SELECT items.waktu_hilang, pengguna.id FROM items, pengguna  
+                        WHERE pengguna.id = items.pengguna_id AND pengguna_id = '$id'");
+                        if($geti = mysqli_fetch_array($get_date)) {
+                            echo $geti['waktu_hilang'];
+                        }
+                    ?>">
                 </td>
             </tr>
             <tr>
