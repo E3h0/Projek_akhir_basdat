@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2022 at 02:42 PM
+-- Generation Time: Dec 04, 2022 at 01:37 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `baranghilang_db`
 --
+CREATE DATABASE IF NOT EXISTS `baranghilang_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `baranghilang_db`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -47,6 +50,7 @@ INSERT INTO `admins` (`id`, `username`, `email`, `password`) VALUES
 -- Table structure for table `cases`
 --
 
+DROP TABLE IF EXISTS `cases`;
 CREATE TABLE `cases` (
   `case_id` int(11) NOT NULL,
   `pemilik_id` int(11) NOT NULL,
@@ -70,6 +74,7 @@ INSERT INTO `cases` (`case_id`, `pemilik_id`, `itm_id`, `category_id`, `status_i
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `c_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL
@@ -91,6 +96,7 @@ INSERT INTO `category` (`c_id`, `category_name`) VALUES
 -- Table structure for table `items`
 --
 
+DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
   `item_id` int(11) NOT NULL,
   `pengguna_id` int(11) NOT NULL,
@@ -117,6 +123,7 @@ INSERT INTO `items` (`item_id`, `pengguna_id`, `kategori_id`, `st_id`, `item_nam
 -- Table structure for table `pengguna`
 --
 
+DROP TABLE IF EXISTS `pengguna`;
 CREATE TABLE `pengguna` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -138,6 +145,7 @@ INSERT INTO `pengguna` (`id`, `username`, `email`, `phone`) VALUES
 -- Table structure for table `status`
 --
 
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE `status` (
   `s_id` int(11) NOT NULL,
   `s_name` varchar(255) NOT NULL
