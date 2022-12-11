@@ -9,9 +9,11 @@
 <html>
 <head>
     <title>Detail</title>
+    <link rel="stylesheet" type="text/css" href="detail.css">
 </head>
 <body>
-    <h2>Detail Data </h2>
+    <div class="container">
+    <center><p class="judul">Detail Data</p><center>
     <table border="0" cellpadding="4">
         <tr>
             <td size="90">Nama Pemilik</td>
@@ -50,6 +52,11 @@
             <td>: <?php echo $result['s_name']?></td>
         </tr>
     </table>
-    <a href="dash.php"><-- Kembali ke Dashboard Page</a><br>
+
+    <div class="bawah">
+        <button type="button" name="Submit" class="pill"><a href="dash.php" style="text-decoration: none;" >Kembali ke dashboard</a></button>
+    </div>
+</div>
+
 </body>
 </html>

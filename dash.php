@@ -4,7 +4,12 @@
     <title>Data Kasus</title>
 </head>
 <body style="font-family:arial">
-    <h2><b>Data Kasus</b></h2>
+<br>
+    <div class="atas">
+        <a href="index.php" class="log-button">Login</a>
+    </div>
+
+    <h1 style="text-align: center;"><b>Data Kasus</b></h1>
     <table style="width:100%" class="table1">
     <tr>
         <th>No</th>
@@ -59,6 +64,6 @@
     }
     ?>
     </table></br> 
-    <a href="index.php"><--Kembali ke Login Page</a><br>
+
 </body>
 </html>

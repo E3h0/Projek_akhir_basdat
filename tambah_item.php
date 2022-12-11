@@ -1,6 +1,7 @@
 <html>
 <head>
- <title>Tambah data</title>
+    <link rel="stylesheet" type="text/css" href="tambah_item.css">
+    <title>Tambah data</title>
 </head>
 <?php
     include "config.php";
@@ -9,80 +10,80 @@
     $get_stat = mysqli_query($conn, "SELECT * FROM status");
 ?>
 <body style="font-family:arial">
- <center><h2>Tambah Data Baru</center>
- <hr />
- <b>Tambah Data Baru</b>
-    <br/><br/>
-
+<div class="semua">
     <form action="tambah_item.php" method="post" name="form1">
-        <table width="100%" border="0">
-            <tr> 
-                <td>Nama Pemilik</td>
-                <!-- <td><input type="text" name="nama_pemilik" size="50" required></td> -->
-                <td>
+    <div class="container">
+        <p class="judul" style="font-size: 2rem;">Tambah Data Baru</p>    
+        <div class="form">
+            <div class="inputfield"> 
+                <label class="label1">Nama Pemilik</label>
                 <label for="nama_pemilik"></label>
-                <select name="nama_pemilik" id="nama_pemilik">
+                <select class="input" name="nama_pemilik" id="nama_pemilik">
                     <?php
                         while($pemilik = mysqli_fetch_array($get_pemilik)) {
                             echo "<option value=".$pemilik['username'].">".$pemilik['username']."</option>";
                         }
                     ?>
                 </select>
-                </td>
-            </tr>
-            <tr> 
-                <td>Nama Barang</td>
-                <td><input type="text" name="item_name" size="50" required></td>
-            </tr>
-            <tr> 
-                <td>Kategori</td>
-                <!-- <td><input type="text" name="nama_pemilik" size="50" required></td> -->
-                <td>
+            </div>
+
+            <div class="inputfield"> 
+                <label class="label1">Nama Barang</label>
+                <input class="input" type="text" name="item_name" size="50" required>
+            </div>
+
+            <div class="inputfield"> 
+                <label class="label1">Kategori</label>
+                <!-- <label><input type="text" name="nama_pemilik" size="50" required></label> -->
                 <label for="kategori"></label>
-                <select name="kategori" id="kategori">
+                <select class="input" name="kategori" id="kategori">
                     <?php
                         while($cat = mysqli_fetch_array($get_cat)) {
                             echo "<option value=".$cat['category_name'].">".$cat['category_name']."</option>";
                         }
                     ?>
                 </select>
-                </td>
-            </tr>
-            <tr> 
-                <td>Detail</td>
-                <td><textarea rows="5" name="detail" required></textarea></td>
-            </tr>
-            <tr> 
-                <td>lokasi</td>
-                <td><input type="text" name="lokasi_hilang" size="50" required></td>
-            </tr>
-            <tr> 
-                <td>waktu</td>
-                <td><input type="datetime-local" name="waktu_hilang" size="50" required></td>
-            </tr>
-            <tr> 
-                <td>Status</td>
-                <!-- <td><input type="text" name="nama_pemilik" size="50" required></td> -->
-                <td>
+                </label>
+            </div>
+
+            <div class="inputfield"> 
+                <label class="label1">Detail</label>
+                <textarea class="input" rows="5" name="detail" required></textarea>
+            </div>
+
+            <div class="inputfield"> 
+                <label class="label1">Lokasi</label>
+                <input class="input" type="text" name="lokasi_hilang" size="50" required>
+            </div>
+
+            <div class="inputfield"> 
+                <label class="label1">Waktu</label>
+                <input class="input" type="datetime-local" name="waktu_hilang" size="50" required>
+            </div>
+
+            <div class="inputfield"> 
+                <label class="label1">Status</label>
                 <label for="st"></label>
-                <select name="st" id="st">
+                <select class="input" name="st" id="st">
                     <?php
                         while($cat = mysqli_fetch_array($get_stat)) {
                             echo "<option value=".$cat['s_name'].">".$cat['s_name']."</option>";
                         }
                     ?>
                 </select>
-                </td>
-            </tr>
-            <tr>    
-                <td></td>
-                <td><input type="submit" name="Submit" value="+ Tambahkan"></td>
-            </tr>
-        </table>
+                </label>
+            </div>
+        </div>
+
+        <div class="bawah">
+            <button type="button" class="pill"><a href="dashboard.php" style="text-decoration: none;" >Cancel</a></button>
+            <input type="submit" name="Submit" class="pill" style="background-color:#a29bfe; color:white">
+        </div>
+        </div>
     </form>
 
+    <div class="bawah">
     <?php
-
     // Check If form submitted,
     if(isset($_POST['Submit'])) {
         $nama_barang = $_POST['item_name'];
@@ -127,6 +128,7 @@
         }
     }
     ?>
-    <a href="dashboard.php"><--Batalkan Tambah Data</a><br>
+    </div>
+</div>
 </body>
 </html>

@@ -9,12 +9,15 @@
 <html>
 <head>
     <title>Detail</title>
+    <link rel="stylesheet" type="text/css" href="detail.css">
 </head>
 <body>
-    <h2>Detail Data </h2>
-    <table border="0" cellpadding="4">
+    <div class="container">
+    <center><p class="judul" style="font-size: 2rem;">Detail Data</p><center>
+        <div class="form">
+        <table border="0" cellpadding="4">
         <tr>
-            <td size="90">Nama Pemilik</td>
+            <td>Nama Pemilik</td>
             <td>: <?php echo $result['username']?></td>
         </tr>
         <tr>
@@ -49,7 +52,12 @@
             <td>Status</td>
             <td>: <?php echo $result['s_name']?></td>
         </tr>
-    </table>
-    <a href="dashboard.php"><-- Kembali ke Dashboard Page</a><br>
+        </table>   
+        </div> 
+        
+        <div class="bawah">
+        <button type="button" name="Submit" class="pill"><a href="dashboard.php" style="text-decoration: none;">Kembali ke dashboard</a></button>
+        </div>
+    </div>
 </body>
 </html>

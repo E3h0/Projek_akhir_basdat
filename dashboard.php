@@ -4,19 +4,20 @@
     <title>Data Kasus</title>
 </head>
 <body style="font-family:arial">
-    <div class="input-group">
-        <a href="logout.php" class="btn">Logout</a>
+    <div class="atas">
+        <?php
+        session_start(); 
+
+        if (!isset($_SESSION['username'])) {
+            header("Location: dashboard.php");
+        }
+
+        echo "<h3>Selamat Datang, " . $_SESSION['username'] ."!". "</h3 >";
+        ?>
+        <a href="logout.php" class="log-button">Logout</a>
     </div>
-    <?php
-    session_start(); 
-
-    if (!isset($_SESSION['username'])) {
-        header("Location: dashboard.php");
-    }
-
-    echo "<h3>Selamat Datang, " . $_SESSION['username'] ."!". "</h3 >";
-    ?>
-    <h2><b>Data Kasus</b></h2>
+    
+    <h1 style="text-align: center;"><b>Data Kasus</b></h1>
     <table style="width:100%" class="table1">
     <tr>
         <th>No</th>
@@ -73,7 +74,9 @@
     }
     ?>
     </table></br> 
-    <a href="tambah_pengguna.php">+ Tambah Pemilik Baru</a><br>
-    <a href="tambah_item.php">+ Tambah Data Baru</a><br>
+    <div class="bawah">
+        <a href="tambah_pengguna.php" class="pill">Add New User</a>
+        <a href="tambah_item.php" class="pill">Add New Report</a>
+    </div>
 </body>
 </html>
