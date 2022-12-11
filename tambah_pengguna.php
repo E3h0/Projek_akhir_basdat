@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="tambah_pengguna.css">
-    <title>Tambah Data Pemilik</title>
+    <title>Tambah Data Pelapor</title>
 </head>
 
 <body style="font-family:arial">
@@ -9,10 +9,10 @@
     <div class="semua">
     <form action="tambah_pengguna.php" method="post" name="form1">
         <div class="container">
-            <p class="judul" style="font-size: 2rem;">Tambah Data Pemilik</p>
+            <p class="judul" style="font-size: 2rem;">Tambah Data Pelapor</p>
             <div class="form">
                 <div class="inputfield">
-                    <label>Nama Pemilik</label>
+                    <label>Nama Pelapor</label>
                     <input type="text" name="username" size="50" class="input" required>
                 </div> 
 

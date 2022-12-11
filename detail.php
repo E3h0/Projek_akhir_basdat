@@ -17,7 +17,7 @@
         <div class="form">
         <table border="0" cellpadding="4">
         <tr>
-            <td>Nama Pemilik</td>
+            <td>Nama Pelapor</td>
             <td>: <?php echo $result['username']?></td>
         </tr>
         <tr>
@@ -41,11 +41,11 @@
             <td>: <?php echo $result['detail']?></td>
         </tr>
         <tr>
-            <td>Lokasi Hilang</td>
+            <td>Lokasi</td>
             <td>: <?php echo $result['lokasi_hilang']?></td>
         </tr>
         <tr>
-            <td>Waktu Hilang</td>
+            <td>Waktu</td>
             <td>: <?php echo $result['waktu_hilang']?></td>
         </tr>
         <tr>

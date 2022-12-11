@@ -22,7 +22,7 @@
     <tr>
         <th>No</th>
         <th>Kode</th>
-        <th><center>Nama Pemilik</center></th>
+        <th><center>Nama Pelapor</center></th>
         <th><center>No. Hp</center></th>
         <th><center>Nama Barang</center></th> 
         <th><center>Kategori</center></th>
@@ -75,8 +75,8 @@
     ?>
     </table></br> 
     <div class="bawah">
-        <a href="tambah_pengguna.php" class="pill">Add New User</a>
-        <a href="tambah_item.php" class="pill">Add New Report</a>
+        <a href="tambah_pengguna.php" class="pill">Tambah Pelapor</a>
+        <a href="tambah_item.php" class="pill">Tambah Laporan</a>
     </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
         <p class="judul" style="font-size: 2rem;">Tambah Data Baru</p>    
         <div class="form">
             <div class="inputfield"> 
-                <label class="label1">Nama Pemilik</label>
+                <label class="label1">Nama Pelapor</label>
                 <label for="nama_pemilik"></label>
                 <select class="input" name="nama_pemilik" id="nama_pemilik">
                     <?php

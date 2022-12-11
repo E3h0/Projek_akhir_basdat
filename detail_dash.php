@@ -16,7 +16,7 @@
     <center><p class="judul">Detail Data</p><center>
     <table border="0" cellpadding="4">
         <tr>
-            <td size="90">Nama Pemilik</td>
+            <td size="90">Nama Pelapor</td>
             <td>: <?php echo $result['username']?></td>
         </tr>
         <tr>

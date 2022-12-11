@@ -84,7 +84,7 @@
             <p class="judul" style="font-size: 2rem;">Edit Data</p>
             <table class="form">
             <tr class="inputfield"> 
-                <td class="label1">Nama Pemilik</td>
+                <td class="label1">Nama Pelapor</td>
                 <td><input class="input" type="text" size="50" name="username" value="<?php echo $nama_pemilik;?>"></td>
             </tr>
 
@@ -153,7 +153,7 @@
             </tr>
 
             <tr class="inputfield"> 
-                <td class="label1">Lokasi Hilang</td>
+                <td class="label1">Lokasi</td>
                 <td><input class="input" type="text" name="lokasi_hilang" size="50" value="<?php
                         $get_item = mysqli_query($conn, "
                         SELECT items.lokasi_hilang FROM items, cases  
@@ -166,7 +166,7 @@
             </tr>
 
             <tr class="inputfield"> 
-                <td class="label1">Waktu Hilang</td>
+                <td class="label1">Waktu</td>
                 <td><input class="input" type="datetime-local" name="waktu_hilang" size="50" value="<?php
                         $get_date = mysqli_query($conn, "
                         SELECT items.waktu_hilang FROM items, cases  
