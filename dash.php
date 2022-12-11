@@ -14,7 +14,7 @@
     <tr>
         <th>No</th>
         <th>Kode</th>
-        <th><center>Nama Pemilik</center></th>
+        <th><center>Nama Pelapor</center></th>
         <th><center>No. Hp</center></th>
         <th><center>Nama Barang</center></th> 
         <th><center>Kategori</center></th>
