@@ -1,32 +1,47 @@
-h2{
-    text-align: center;
+.atas{
+    justify-content: space-between;
+    align-content: right;
+    text-align: right;
+}
+.atas h3{
+    align-content: left;
+    text-align: left;
 }
 
-.input-group .btn {
-    display: block;
-    width: 10%;
-    padding: 15px 20px;
-    text-align: left;
+.atas .log-button {
+    font-size: 17px;
+    padding: 0.75em 2em;
+    margin: 0.25em;
+    border-radius: 1em;
     border: none;
-    background: #a29bfe;
     outline: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    color: #FFF;
     cursor: pointer;
-    transition: .3s;
-    margin-top: 20px;
+    margin-top: 50px;
+    margin-right: 20px;
+    background-color:#a29bfe;
+    text-decoration: none;
+    color: white;
 }
+
+h1{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #000000;
+}
+
 .table1 {
     font-family: sans-serif;
     color: #444;
     border-collapse: collapse;
     width: 50%;
     border: 1px solid #f2f5f7;
+    margin-bottom: 25px;
 }
 
 .table1 tr th{
-    background: #35A9DB;
+    background: #a29bfe;
     color: #fff;
     font-weight: normal;
 }
@@ -42,4 +57,26 @@ h2{
 
 .table1 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.bawah{
+    align-content: center;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.bawah .pill {
+    font-size: 17px;
+    padding: 0.75em 2em;
+    margin: 1em;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-right: 20px;
+    background-color:#a29bfe;
+    text-decoration: none;
+    color: white;
 }

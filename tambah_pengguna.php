@@ -1,37 +1,42 @@
 <html>
 <head>
- <title>Tambah Data Pemilik</title>
+    <link rel="stylesheet" type="text/css" href="tambah_pengguna.css">
+    <title>Tambah Data Pelapor</title>
 </head>
-<body style="font-family:arial">
- <center><h2>Tambah Data Pemilik</center>
- <hr />
- <b>Tambah Data Baru</b>
-    <br/><br/>
 
+<body style="font-family:arial">
+
+    <div class="semua">
     <form action="tambah_pengguna.php" method="post" name="form1">
-        <table width="100%" border="0">
-            <tr> 
-                <td>Nama Pemilik</td>
-                <td><input type="text" name="username" size="50" required></td>
-            </tr>
-            <tr> 
-                <td>email</td>
-                <td><input type="email" name="email" size="50" required></td>
-            </tr>
-            <tr> 
-                <td>phone</td>
-                <td><input type="text" name="phone" size="50" required></td>
-            </tr>
-            <tr> 
-                <td></td>
-                <td><input type="submit" name="Submit" value="+ Tambahkan"></td>
-            </tr>
-        </table>
+        <div class="container">
+            <p class="judul" style="font-size: 2rem;">Tambah Data Pelapor</p>
+            <div class="form">
+                <div class="inputfield">
+                    <label>Nama Pelapor</label>
+                    <input type="text" name="username" size="50" class="input" required>
+                </div> 
+
+                <div class="inputfield">
+                    <label>Email</label>
+                    <input type="email" name="email" size="50" class="input" required>
+                </div>   
+
+                <div class="inputfield">
+                    <label>Phone</label>
+                    <input type="text" name="phone" size="50" class="input" required>
+                </div>  
+            </div>
+
+            <div class="bawah">
+                <button type="button" name="Submit" class="pill"><a href="dashboard.php" style="text-decoration: none;" >Cancel</a></button>
+                <input type="submit" name="Submit" class="pill" style="background-color:#a29bfe; color:white">
+            </div>
+        </div>
     </form>
 
+    <div class="bawah">
     <?php
-
-    // Check If form submitted,
+    // Check If form submitted,    
     if(isset($_POST['Submit'])) {
         $nama_pemilik = $_POST['username'];
         $kontak1 = $_POST['email'];
@@ -55,6 +60,8 @@
         }
     }
     ?>
-    <a href="dashboard.php"><--Batalkan Tambah Pemilik</a><br>
+    </div>
+    </div>
+
 </body>
 </html>

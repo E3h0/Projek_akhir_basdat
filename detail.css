@@ -1,0 +1,51 @@
+* {
+    margin: unset;
+    padding: 10;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+  width: 100%;
+  background: #fff;
+  margin: 30px auto;
+  box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.125);
+  padding: 50px;
+}
+
+  
+.container .judul{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+  }
+  
+.container .form{
+    width: 100%;
+  }
+
+.bawah{
+    align-content: center;
+    text-align: center;
+}
+
+.bawah .pill {
+    font-size: 17px;
+    padding: 0.75em 2em;
+    margin: 0.25em;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
