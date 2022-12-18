@@ -1,7 +1,7 @@
 
 # Ke-Temu
 
-Ke-Temu adalah sebuah website yang berfungsi sebagai pencatat kasus kehilangan barang ataupun penemuan barang yang hilang
+Ke-Temu adalah sebuah website yang berfungsi sebagai pencatat kasus kehilangan barang ataupun penemuan barang yang hilang.
 
 
 ## Dikerjakan Oleh :
