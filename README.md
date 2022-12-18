@@ -1,7 +1,7 @@
 
-# Project Title
+# Ke-Temu
 
-A brief description of what this project does and who it's for
+Ke-Temu adalah sebuah website yang berfungsi sebagai pencatat kasus kehilangan barang ataupun penemuan barang yang hilang
 
 
 ## Dikerjakan Oleh :
